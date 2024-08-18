@@ -2,14 +2,59 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { Button } from './components/ui/button'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AppLayout from './Layouts/app-layout'
+import LandingPage from './Pages/landing'
+import OnBoarding from './Pages/onboarding'
+import JobPage from './Pages/job'
+import JobListing from './Pages/job-listing'
+import PostJob from './Pages/post-job'
+import SavedJobs from './Pages/save-job'
+import MyJobs from './Pages/my-jobs'
 
+const router = createBrowserRouter([
+  {
+    element:<AppLayout/>,
+    children:[
+      {
+        path:'/',
+        element:<LandingPage/>,
+      },
+      {
+        path:'/onboarding',
+        element:<OnBoarding/>,
+      },
+      {
+        path:'/jobs',
+        element:<JobListing/>,
+      },
+      {
+        path:'/job/:id',
+        element:<JobPage/>,
+      },
+      {
+        path:'/post-job',
+        element:<PostJob/>,
+      },
+      {
+        path:'/saved-job',
+        element:<SavedJobs/>,
+      },
+      {
+        path:'/my-jobs',
+        element:<MyJobs/>,
+      },
+    ],
+  },
+]);
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-    <h1>Hello World</h1>
-    </>
+  
+    <RouterProvider router={router}/>
+    
   )
 }
 
